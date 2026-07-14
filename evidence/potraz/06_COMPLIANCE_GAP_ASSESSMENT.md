@@ -1,23 +1,25 @@
 # Compliance Gap Assessment
 
-## Completed in repository
-- Dataset inventory and data dictionary.
-- DPIA draft and risk register.
-- ROPA template with project activity.
-- Deterministic normalization and validation.
-- Private/public release separation.
-- Incident, rights, retention, access, processor and correction procedures.
-- DPO responsibilities template.
-- CI, tests, manifests and evidence index.
+## What I have completed in the repository
 
-## Requires organisational completion
-- Confirm controller and processor roles.
-- Complete current POTRAZ registration/licensing forms and evidence of payment/filing where applicable.
-- Formally appoint the DPO and provide current contact details.
-- Approve lawful basis and publication-rights analysis.
-- Complete third-party contracts and transfer assessments.
-- Provide operational access-control screenshots/logs.
-- Complete staff training evidence.
-- Conduct backup restore and incident exercises.
-- Complete review of six manual-review records and classification anomalies.
-- Obtain management, legal, editorial and DPO sign-off.
+- I documented the dataset inventory and data dictionary.
+- I prepared a draft DPIA and risk register.
+- I prepared the ROPA structure and recorded the project activity.
+- I implemented deterministic normalisation and validation.
+- I separated restricted, processed, and public-release layers.
+- I documented incident, rights, retention, access, processor, and correction procedures.
+- I included a DPO responsibilities template.
+- I added CI, tests, manifests, and an evidence index.
+
+## What still requires organisational completion
+
+- I need formal confirmation of the controller and processor roles.
+- I need to retrieve and complete the current POTRAZ registration or licensing forms, including payment or filing evidence where applicable.
+- The organisation must formally appoint the DPO and confirm current contact details.
+- The lawful basis and publication-rights analysis must be approved.
+- Third-party contracts and transfer assessments must be completed.
+- Operational access-control evidence, including relevant screenshots or logs, must be attached.
+- Staff training evidence must be completed.
+- Backup restoration and incident-response exercises must be performed and recorded.
+- The six manual-review records and classification anomalies must be resolved or expressly accepted.
+- Management, legal, editorial, security, and DPO sign-off must be completed.
