@@ -25,6 +25,15 @@ TERM_FIELDS = {
     "constitutional_provisions_considered": "constitutional_provisions_considered_terms",
 }
 
+SHORT_FIELD_LIMITS = {
+    "court": 200,
+    "case_number": 200,
+    "judgment_number": 120,
+    "citation": 250,
+    "division": 80,
+    "approval_status": 80,
+}
+
 
 def parse_numbered_fields(text: str) -> dict[str, str]:
     pattern = re.compile(r"(?m)^\s*(\d{1,2})\.\s+([^:\n]+):[ \t]*(.*)$")
@@ -60,20 +69,46 @@ def canonical_record_hash(record: dict) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def _looks_corrupted_short_field(field: str, value: object) -> bool:
+    text = str(value or "").strip()
+    if not text:
+        return True
+    limit = SHORT_FIELD_LIMITS.get(field)
+    if limit is not None and len(text) > limit:
+        return True
+    if text.count("\n") > 2:
+        return True
+    if field == "court" and "COURT" not in text.upper():
+        return True
+    return False
+
+
 def normalise_record(source_record: dict) -> tuple[dict, list[str]]:
     record = json.loads(json.dumps(source_record, ensure_ascii=False))
     actions: list[str] = []
     recovered = parse_numbered_fields(record.get("source_block_text", ""))
+
     for field in FIELD_NAMES.values():
-        if not str(record.get(field, "")).strip() and recovered.get(field, "").strip():
-            record[field] = recovered[field]
-            actions.append(f"filled:{field}:from_source_block")
+        recovered_value = recovered.get(field, "").strip()
+        current_value = record.get(field, "")
+
+        should_recover = not str(current_value).strip()
+        if field in SHORT_FIELD_LIMITS and _looks_corrupted_short_field(field, current_value):
+            should_recover = True
+
+        if should_recover and recovered_value:
+            record[field] = recovered_value
+            action = "replaced" if str(current_value).strip() else "filled"
+            actions.append(f"{action}:{field}:from_source_block")
+
     if record.get("record_type") == "law_report_draft" and not str(record.get("approval_status", "")).strip():
         record["approval_status"] = "Draft"
         actions.append("filled:approval_status:derived_from_draft_record")
+
     if record.get("court_family") != "High Court" and str(record.get("division", "")).strip():
         record["division"] = ""
         actions.append("cleared:division:non_high_court_record")
+
     prefix, number = derive_judgment_number_parts(str(record.get("judgment_number", "")))
     if record.get("judgment_number_prefix") != prefix:
         record["judgment_number_prefix"] = prefix
@@ -81,11 +116,13 @@ def normalise_record(source_record: dict) -> tuple[dict, list[str]]:
     if record.get("judgment_number_int") != number:
         record["judgment_number_int"] = number
         actions.append("recomputed:judgment_number_int")
+
     for source_field, term_field in TERM_FIELDS.items():
         derived = split_terms(str(record.get(source_field, "")))
-        if not isinstance(record.get(term_field), list) or (not record.get(term_field) and derived):
+        if not isinstance(record.get(term_field), list) or record.get(term_field) != derived:
             record[term_field] = derived
             actions.append(f"recomputed:{term_field}")
+
     occurrences = record.get("source_occurrences")
     if not isinstance(occurrences, list):
         occurrences = []
@@ -94,9 +131,11 @@ def normalise_record(source_record: dict) -> tuple[dict, list[str]]:
     if record.get("source_occurrence_count") != len(occurrences):
         record["source_occurrence_count"] = len(occurrences)
         actions.append("recomputed:source_occurrence_count")
+
     duplicate = len(occurrences) > 1
     if bool(record.get("duplicate_detected")) != duplicate:
         record["duplicate_detected"] = duplicate
         actions.append("recomputed:duplicate_detected")
+
     record["record_sha256"] = canonical_record_hash(record)
     return record, actions
