@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this repository and the applicable evidence dataset release."
+title: "Zimbabwe Law AI Evidence Layer"
+type: dataset
+authors:
+  - family-names: Mambara
+    given-names: Simbarashe
+version: 1.0.0
+date-released: 2026-07-14
+repository-code: "https://github.com/simbamambara/Zimbabwe-Law-AI-Evidence-Layer"
+license: Apache-2.0
