@@ -1,0 +1,22 @@
+name: Data correction request
+description: Report a potential error without posting sensitive information.
+title: "[DATA CORRECTION] "
+labels: ["data-correction"]
+body:
+  - type: input
+    id: record_id
+    attributes:
+      label: Record ID
+    validations:
+      required: true
+  - type: input
+    id: judgment_number
+    attributes:
+      label: Judgment number
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue and source evidence
+      description: Do not include sensitive personal information in a public issue.
+    validations:
+      required: true
