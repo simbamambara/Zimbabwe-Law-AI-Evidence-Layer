@@ -1,0 +1,27 @@
+{
+  "generated_at_utc": "2026-07-14T10:58:28+00:00",
+  "total_records": 522,
+  "record_type_counts": {
+    "law_report_draft": 465,
+    "excluded": 51,
+    "manual_review": 6
+  },
+  "court_family_counts": {
+    "Constitutional Court": 10,
+    "High Court": 393,
+    "Supreme Court": 119
+  },
+  "high_court_division_counts": {
+    "Bulawayo": 95,
+    "Chinhoyi": 6,
+    "Harare": 272,
+    "Masvingo": 19,
+    "Mutare": 1
+  },
+  "manual_review_records": 6,
+  "classification_anomalies": 6,
+  "records_with_multiple_source_occurrences": 7,
+  "normalization_records_with_substantive_actions": 20,
+  "raw_source_sha256": "60c2f8f21330a41e336a4210809681f58da03c1ec42755df424aacd5484e9f65",
+  "normalized_dataset_sha256": "366e3540a9266313bdc16349d3407c7f256cce33fb5600572ec0d4f42f9174c8"
+}
