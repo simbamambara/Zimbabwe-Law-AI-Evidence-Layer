@@ -1,5 +1,5 @@
 # Regulatory Reference Note
 
-The official POTRAZ site was checked on 14 July 2026. It presents a Data Protection Authority section that links the Cyber and Data Protection Act [Chapter 12:07] and implementation guidelines, a forms download area and a complaint mechanism.
+I checked the official POTRAZ website on 14 July 2026. At that time, it included a Data Protection Authority section with links to the Cyber and Data Protection Act [Chapter 12:07], implementation guidance, downloadable forms, and a complaint mechanism.
 
-This package deliberately avoids hard-coding filing fees, licence categories or deadlines because current official forms and implementation directions must be verified immediately before submission.
+I have deliberately not hard-coded filing fees, licence categories, or deadlines into this repository. I will verify the current official forms, fees, filing categories, and implementation directions immediately before submission and retain evidence of the version I relied on.
