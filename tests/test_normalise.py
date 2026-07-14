@@ -30,3 +30,22 @@ def test_normalise_sets_draft_status():
     assert normalized["approval_status"] == "Draft"
     assert any("approval_status" in action for action in actions)
     assert len(normalized["record_sha256"]) == 64
+
+
+def test_corrupted_court_falls_back_to_court_family():
+    record = {
+        "record_type": "law_report_draft",
+        "court_family": "Constitutional Court",
+        "division": "",
+        "court": "1. The provisional order is confirmed.\n" * 20,
+        "judgment_number": "Judgment No. CCZ 9/22",
+        "source_block_text": "",
+        "source_occurrences": [],
+        "source_occurrence_count": 0,
+        "duplicate_detected": False,
+        "approval_status": "Draft",
+    }
+    normalized, actions = normalise_record(record)
+    assert normalized["court"] == "CONSTITUTIONAL COURT OF ZIMBABWE"
+    assert "replaced:court:from_court_family" in actions
+    assert len(normalized["record_sha256"]) == 64
