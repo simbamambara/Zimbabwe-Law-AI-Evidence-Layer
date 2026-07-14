@@ -1,0 +1,7 @@
+dataset_row_number,record_id,document_name,record_type,classification_as_recorded,classification_normalized_for_analysis,action_required
+432,zimlex-2022-59ee2c18f35c653dad2a,SC 12 - 22 SIMON CHINGANGA vs MUNASHE SHAVA & 2 ORS.docx,manual_review,DISRIBUTABLE (11),DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
+440,zimlex-2022-7be6f40d622dbfd224fd,SC 17 - 22 CFI HOLDINGS V PEGGY RAMBANAPASI.rtf,excluded,NOT REPORTABLE/NOT REPORTABLE: (16),NOT_REPORTABLE_DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
+441,zimlex-2022-7ee2d7c6ae6c9dd3b0ed,SC 18 - 21 TAFADZWA MUSARARA vs ZIMRA Extempore judgment.docx,excluded,NOT REPORATABLE/ NOT DISTRIBUTABLE,NOT_REPORTABLE_DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
+445,zimlex-2022-3e113d27798d9adf35ae,SC 23 - 22 RIOZIM LIMITED vs NIGEL DIXON - WARREN N.O - musakwa.doc,excluded,NOT REPORTABLE/ NOT DISTRIBUTABLE,NOT_REPORTABLE_DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
+468,zimlex-2022-2d912c702faf920d62a4,SC 48 - 22 Lipani Doubt Maphosa vs Chiedza Maphosa(Nee Mawere).docx,manual_review,DISTRIBUTABLE (38),DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
+469,zimlex-2022-5b4a3c19fed56f9746c2,SC 49 - 22 NGWARU MASANZA & ANOR  vs  LUKE RWAFA & 2 ORS.docx,manual_review,DISTRIBUTABLE (39),DISTRIBUTABLE,Verify against official judgment heading; preserve original source text.
