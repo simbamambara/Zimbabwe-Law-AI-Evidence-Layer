@@ -1,17 +1,22 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "zimlawai-evidence"
-version = "0.1.0"
-description = "Validation and governance tooling for the Zimbabwe Law AI evidence layer"
+name = "zimlex-dataset"
+version = "1.0.0"
+description = "Zimbabwe Law AI evidence-layer normalization, validation, and release tooling"
 readme = "README.md"
 requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Simbarashe Mambara"}]
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "jsonschema>=4"]
+dev = ["pytest>=8.0", "jsonschema>=4.20", "ruff>=0.5"]
+
+[project.scripts]
+zimlex-dataset = "zimlex_dataset.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -19,3 +24,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
