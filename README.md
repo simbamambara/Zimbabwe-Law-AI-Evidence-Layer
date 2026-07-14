@@ -36,12 +36,6 @@ data/processed/zimbabwe_2022_law_reports_metadata_only.jsonl
 data/public/zimbabwe_2022_law_reports_public_minimal.jsonl
 ```
 
-Upload these supporting evidence files to their exact paths when they are not already present:
-
-```text
-data/index/zimbabwe_2022_law_reports_index.csv
-data/metadata/normalization_log.csv
-data/public/zimbabwe_2022_public_sample.jsonl
 ```
 
 ## Run the checks
@@ -61,18 +55,6 @@ Windows PowerShell:
 .\scripts\run_all_checks.ps1
 ```
 
-Before the large files are uploaded, CI performs repository-structure and code tests and reports dataset validation as pending instead of failing on missing files.
-
 ## Evidence controls
 
 The repository includes deterministic hashing, schema validation, normalization logs, duplicate-source evidence, manual-review queues, privacy and governance templates, access and retention controls, incident procedures, correction and takedown processes, processing and risk registers, and POTRAZ evidence indexing.
-
-## Publication boundary
-
-Keep the repository private when it contains full source text, source blocks, personal information, or internal submission evidence. Any public release requires a documented legal, privacy, editorial, and data-owner decision.
-
-## Status
-
-Evidence framework: configured.  
-Large dataset upload: manual step.  
-POTRAZ filing: requires completion and sign-off by the accountable organisation.
