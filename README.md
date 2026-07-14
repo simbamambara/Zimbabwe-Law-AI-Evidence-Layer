@@ -1,18 +1,22 @@
 # Zimbabwe Law AI Evidence Layer
 
-This repository is the technical, governance, validation, and audit evidence layer for **Zimbabwe Law AI**.
+I built this repository as the technical, governance, validation, and audit evidence layer for **Zimbabwe Law AI**.
 
-It preserves the project structure needed to demonstrate data provenance, integrity controls, reproducible processing, quality assurance, privacy safeguards, human review, and submission readiness. It is not a claim of regulatory approval, not legal advice, and not an official court publication.
+My aim is to show, clearly and reproducibly, how I collected, structured, normalised, checked, and governed the 2022 Zimbabwean judicial dataset that supports this project. I use the repository to preserve provenance, document corrections, test data quality, record review decisions, and prepare evidence for organisational and regulatory assessment.
 
-## Evidence snapshot
+This repository is not a claim of regulatory approval. It is also not legal advice or an official court publication.
 
-The current 2022 evidence dataset contains 522 canonical records across the Constitutional Court, Supreme Court, and High Court. The repository records validation results, correction provenance, review queues, source hashes, schemas, processing code, governance controls, and POTRAZ submission material.
+## Why I built it
+
+Zimbabwean judgments are available in many formats, but they are not consistently structured for reproducible legal research or responsible AI development. I created this evidence layer so that every important transformation can be traced, reviewed, and repeated rather than hidden inside an informal workflow.
+
+The current evidence dataset contains **522 canonical records** across the Constitutional Court, Supreme Court, and High Court. I preserve the source lineage, validation results, correction history, schemas, review queues, code, governance controls, and POTRAZ submission material alongside the data.
 
 ## Repository structure
 
 ```text
-data/raw/          Original rebuilt JSONL uploaded manually
-data/processed/    Normalized and minimized derivatives uploaded manually
+data/raw/          Original rebuilt JSONL
+data/processed/    Normalised and minimised derivatives
 data/public/       Public-minimal derivative and sample
 data/index/        Review-friendly CSV index
 data/metadata/     Validation reports, manifests, queues, and audit logs
@@ -24,9 +28,7 @@ docs/              Architecture, governance, compliance, and registers
 evidence/potraz/   POTRAZ evidence index, control matrix, and sign-off pack
 ```
 
-## Manual large-file upload
-
-Upload the large files manually to these exact paths:
+## Main dataset files
 
 ```text
 data/raw/zimbabwe_2022_law_reports_all_courts_rebuilt.jsonl
@@ -34,13 +36,10 @@ data/processed/zimbabwe_2022_law_reports_normalized.jsonl
 data/processed/zimbabwe_2022_law_reports_normalized.jsonl.gz
 data/processed/zimbabwe_2022_law_reports_metadata_only.jsonl
 data/public/zimbabwe_2022_law_reports_public_minimal.jsonl
+data/index/zimbabwe_2022_law_reports_index.csv
 ```
 
-```
-
-## Run the checks
-
-After the manual upload:
+## How I run the checks
 
 ```bash
 python -m pip install -e ".[dev]"
@@ -49,7 +48,7 @@ pytest -q
 python scripts/verify_hashes.py
 ```
 
-Windows PowerShell:
+On Windows PowerShell I use:
 
 ```powershell
 .\scripts\run_all_checks.ps1
@@ -57,4 +56,10 @@ Windows PowerShell:
 
 ## Evidence controls
 
-The repository includes deterministic hashing, schema validation, normalization logs, duplicate-source evidence, manual-review queues, privacy and governance templates, access and retention controls, incident procedures, correction and takedown processes, processing and risk registers, and POTRAZ evidence indexing.
+I use deterministic hashing, schema validation, normalisation logs, duplicate-source evidence, manual-review queues, privacy checks, access and retention controls, incident procedures, correction and takedown processes, processing registers, risk registers, and POTRAZ evidence indexing.
+
+I do not treat automated validation as a substitute for legal, editorial, privacy, security, or institutional review. Any external release or production deployment still requires documented approval by the relevant accountable persons.
+
+## Publication boundary
+
+The full repository should remain private while it contains complete source text, personal information, internal review decisions, security material, or submission evidence. I only place material under `data/public/` after it has passed technical checks and separate legal, privacy, and institutional review.
