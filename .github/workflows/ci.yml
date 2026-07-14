@@ -4,8 +4,11 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,10 +17,11 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install -e ".[dev]"
       - run: pytest -q
-      - name: Validate curated dataset when present
+      - name: Validate dataset when present
+        shell: bash
         run: |
-          if [ -f data/curated/zimbabwe_2022_evidence_dataset_v1.jsonl ]; then
+          if [ -f data/processed/zimbabwe_2022_law_reports_normalized.jsonl ]; then
             python scripts/validate_dataset.py
           else
-            echo "Controlled dataset not uploaded; structural tests only."
+            echo "Manual dataset upload pending; code and structure checks completed."
           fi
