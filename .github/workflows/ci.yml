@@ -1,0 +1,23 @@
+name: Evidence Layer CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Validate curated dataset when present
+        run: |
+          if [ -f data/curated/zimbabwe_2022_evidence_dataset_v1.jsonl ]; then
+            python scripts/validate_dataset.py
+          else
+            echo "Controlled dataset not uploaded; structural tests only."
+          fi
