@@ -34,6 +34,12 @@ SHORT_FIELD_LIMITS = {
     "approval_status": 80,
 }
 
+COURT_BY_FAMILY = {
+    "Constitutional Court": "CONSTITUTIONAL COURT OF ZIMBABWE",
+    "Supreme Court": "SUPREME COURT OF ZIMBABWE",
+    "High Court": "HIGH COURT OF ZIMBABWE",
+}
+
 
 def parse_numbered_fields(text: str) -> dict[str, str]:
     pattern = re.compile(r"(?m)^\s*(\d{1,2})\.\s+([^:\n]+):[ \t]*(.*)$")
@@ -100,6 +106,15 @@ def normalise_record(source_record: dict) -> tuple[dict, list[str]]:
             record[field] = recovered_value
             action = "replaced" if str(current_value).strip() else "filled"
             actions.append(f"{action}:{field}:from_source_block")
+
+    # A malformed source block may not expose a recoverable numbered court field.
+    # In that case the court family is still authoritative enough to restore the
+    # short metadata value without copying judgment prose into the court field.
+    if _looks_corrupted_short_field("court", record.get("court", "")):
+        fallback_court = COURT_BY_FAMILY.get(str(record.get("court_family", "")).strip())
+        if fallback_court:
+            record["court"] = fallback_court
+            actions.append("replaced:court:from_court_family")
 
     if record.get("record_type") == "law_report_draft" and not str(record.get("approval_status", "")).strip():
         record["approval_status"] = "Draft"
