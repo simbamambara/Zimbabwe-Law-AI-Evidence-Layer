@@ -1,0 +1,1 @@
+incident_id,detected_at,reported_at,description,data_categories,subjects_affected_estimate,systems,containment,risk_assessment,dpo_notified,regulator_notification_decision,data_subject_notification_decision,root_cause,corrective_actions,closed_at,owner
