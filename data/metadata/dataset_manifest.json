@@ -1,0 +1,37 @@
+{
+  "dataset_name": "Zimbabwe Law AI 2022 Evidence Dataset",
+  "version": "1.0.0",
+  "generated_at_utc": "2026-07-14T10:58:28+00:00",
+  "raw_source": {
+    "path": "data/raw/zimbabwe_2022_law_reports_all_courts_rebuilt.jsonl",
+    "size_bytes": 23559414,
+    "sha256": "60c2f8f21330a41e336a4210809681f58da03c1ec42755df424aacd5484e9f65",
+    "record_count": 522
+  },
+  "normalized_dataset": {
+    "path": "data/processed/zimbabwe_2022_law_reports_normalized.jsonl",
+    "size_bytes": 23540800,
+    "sha256": "366e3540a9266313bdc16349d3407c7f256cce33fb5600572ec0d4f42f9174c8",
+    "record_count": 522
+  },
+  "record_type_counts": {
+    "law_report_draft": 465,
+    "excluded": 51,
+    "manual_review": 6
+  },
+  "court_family_counts": {
+    "Constitutional Court": 10,
+    "High Court": 393,
+    "Supreme Court": 119
+  },
+  "high_court_division_counts": {
+    "Bulawayo": 95,
+    "Chinhoyi": 6,
+    "Harare": 272,
+    "Masvingo": 19,
+    "Mutare": 1
+  },
+  "validation_passed": true,
+  "manual_review_record_count": 6,
+  "classification_anomaly_count": 6
+}
