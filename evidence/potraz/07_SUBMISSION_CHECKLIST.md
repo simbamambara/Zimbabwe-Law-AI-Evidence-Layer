@@ -1,0 +1,22 @@
+# Submission Checklist
+
+- [ ] Organisation legal name, registration number and address completed.
+- [ ] Data controller/processor classification confirmed.
+- [ ] Current POTRAZ forms and fees retrieved from official source.
+- [ ] Data controller registration/licence application completed where applicable.
+- [ ] DPO formally appointed and contact information supplied.
+- [ ] ROPA approved.
+- [ ] DPIA approved and residual risk accepted.
+- [ ] Lawful basis documented.
+- [ ] Full-text publication-rights analysis approved.
+- [ ] Privacy notice approved.
+- [ ] Processor agreements and transfer assessments completed.
+- [ ] Access control and MFA evidence attached.
+- [ ] Security/backup testing evidence attached.
+- [ ] Incident response exercise completed.
+- [ ] Staff training records attached.
+- [ ] Manual-review and classification-anomaly queues resolved or disclosed.
+- [ ] Validation report passed.
+- [ ] Hash manifest verified.
+- [ ] Management, DPO, legal and editorial sign-off completed.
+- [ ] Submission copy archived with date and receipt/reference number.
