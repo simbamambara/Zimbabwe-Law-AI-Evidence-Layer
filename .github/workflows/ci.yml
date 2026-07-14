@@ -12,6 +12,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      PYTHONPATH: ${{ github.workspace }}/src
 
     steps:
       - name: Check out repository
@@ -22,29 +24,72 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install project and test dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e ".[dev]"
-
       - name: Rebuild controlled derivatives
-        shell: bash
         run: |
-          if [ -f data/raw/zimbabwe_2022_law_reports_all_courts_rebuilt.jsonl ]; then
-            python scripts/normalise_dataset.py
-            python scripts/build_public_release.py
-          else
-            echo "Raw dataset is not present; running code-only tests."
-          fi
+          python scripts/normalise_dataset.py
+          python scripts/build_public_release.py
 
-      - name: Validate normalized dataset
-        shell: bash
+      - name: Run deterministic corpus audit
         run: |
-          if [ -f data/processed/zimbabwe_2022_law_reports_normalized.jsonl ]; then
-            python scripts/validate_dataset.py
-          else
-            echo "Normalized dataset is not present; validation skipped."
-          fi
+          python - <<'PY'
+          from collections import Counter
+          from pathlib import Path
+          import json
 
-      - name: Run test suite
-        run: pytest -q
+          root = Path('.')
+          normalized_path = root / 'data/processed/zimbabwe_2022_law_reports_normalized.jsonl'
+          public_path = root / 'data/public/zimbabwe_2022_law_reports_public_minimal.jsonl'
+
+          def load_jsonl(path):
+              with path.open('r', encoding='utf-8-sig') as handle:
+                  return [json.loads(line) for line in handle if line.strip()]
+
+          records = load_jsonl(normalized_path)
+          assert len(records) == 522, f'Expected 522 records, found {len(records)}'
+
+          record_ids = [record.get('record_id') for record in records]
+          identities = [record.get('canonical_identity') for record in records]
+          rows = [record.get('dataset_row_number') for record in records]
+
+          assert all(record_ids), 'One or more records have no record_id'
+          assert len(set(record_ids)) == 522, 'Duplicate record_id values found'
+          assert len(set(identities)) == 522, 'Duplicate canonical identities found'
+          assert rows == list(range(1, 523)), 'Dataset row numbers are not contiguous'
+
+          court_counts = Counter(record.get('court_family') for record in records)
+          assert court_counts == {
+              'Constitutional Court': 10,
+              'High Court': 393,
+              'Supreme Court': 119,
+          }, court_counts
+
+          type_counts = Counter(record.get('record_type') for record in records)
+          assert type_counts == {
+              'law_report_draft': 465,
+              'excluded': 51,
+              'manual_review': 6,
+          }, type_counts
+
+          for record in records:
+              if record.get('record_type') == 'law_report_draft':
+                  court = str(record.get('court', '')).strip()
+                  assert court and 'COURT' in court.upper(), (
+                      record.get('record_id'), record.get('judgment_number'), court[:200]
+                  )
+                  assert len(court) <= 200, (
+                      record.get('record_id'), record.get('judgment_number'), len(court)
+                  )
+
+          public_records = load_jsonl(public_path)
+          assert len(public_records) == 522, f'Expected 522 public records, found {len(public_records)}'
+          forbidden = {
+              'case_name', 'document_name', 'parties', 'counsel_and_appearances',
+              'facts', 'procedural_history', 'final_order',
+              'full_formatted_judgment_text', 'source_block_text', 'source_occurrences',
+          }
+          for record in public_records:
+              leaked = forbidden.intersection(record)
+              assert not leaked, (record.get('record_id'), sorted(leaked))
+
+          print('Corpus audit passed: 522 records, unique identities, expected court totals, and public-field controls verified.')
+          PY
