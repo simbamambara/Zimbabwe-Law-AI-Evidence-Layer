@@ -1,0 +1,29 @@
+name: Dataset audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 1 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev]"
+      - name: Run full audit when source dataset is present
+        shell: bash
+        run: |
+          if [ -f data/raw/zimbabwe_2022_law_reports_all_courts_rebuilt.jsonl ]; then
+            python scripts/normalise_dataset.py
+            python scripts/validate_dataset.py
+            pytest -q
+          else
+            echo "Raw dataset upload pending; scheduled audit skipped."
+          fi
