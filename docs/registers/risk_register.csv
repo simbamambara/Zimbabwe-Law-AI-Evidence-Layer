@@ -1,0 +1,16 @@
+risk_id,risk,category,likelihood,impact,controls,residual_risk,owner,status,review_date
+R-001,Unauthorised disclosure of full judgments or source blocks,Privacy/Security,High,High,Private repository; least privilege; MFA; public-minimal release,Medium,DPO/Technical Lead,Open,2026-10-14
+R-002,Publication of protected identity or sensitive family/criminal information,Privacy/Editorial,High,High,Sensitive-content review; manual approval; suppression procedure,Medium,Editorial Lead/DPO,Open,2026-10-14
+R-003,"Incorrect headnote, ratio or held point",Legal accuracy,Medium,High,Source verification; two-person editorial review; correction log,Medium,Editorial Lead,Open,2026-10-14
+R-004,Publication-classification error,Publication governance,Medium,High,Official-heading gate; anomaly queue; manual review,Low,Editorial Lead,Open,2026-10-14
+R-005,Unlawful public redistribution of source judgments,Legal/Licensing,Medium,High,Private default; rights analysis; separate data licence,Medium,Legal Counsel/Data Owner,Open,2026-10-14
+R-006,Record hash or provenance failure,Integrity,Low,High,Source and record hashes; validation; immutable releases,Low,Technical Lead,Controlled,2026-10-14
+R-007,Use of dataset for unapproved model training,Purpose limitation,Medium,High,Access policy; deployment boundaries; processor controls,Medium,Data Owner/DPO,Open,2026-10-14
+R-008,Cross-border access through cloud or GitHub,Transfer,Medium,High,Transfer assessment; private hosting decision; contractual safeguards,Medium,DPO/Legal Counsel,Open,2026-10-14
+R-009,Failure to respond to correction or data-subject request,Rights/Accuracy,Medium,Medium,Request register; named owner; documented procedure,Low,DPO/Editorial Lead,Open,2026-10-14
+R-010,Credential compromise,Security,Medium,High,MFA; unique accounts; secret scanning; prompt revocation,Medium,Technical Lead,Open,2026-10-14
+R-011,Backups retain corrected or suppressed records indefinitely,Retention,Medium,Medium,Backup rotation; restore procedure; legal-hold process,Low,Technical Lead/DPO,Open,2026-10-14
+R-012,Third-party AI or API provider retains submitted judgment text,Processor,Medium,High,No provider use without contract and assessment; minimisation,Medium,DPO/Technical Lead,Open,2026-10-14
+R-013,Manual-review records treated as approved,Workflow,Medium,High,Explicit record type; release gate; tests and review queue,Low,Editorial Lead,Controlled,2026-10-14
+R-014,Source corpus incomplete for a court station,Completeness,High,Medium,Coverage disclosure; inventory reconciliation; source acquisition plan,Medium,Data Owner/Editorial Lead,Open,2026-10-14
+R-015,Automated public-minimal release still enables re-identification,Privacy,Low,Medium,Remove names and narratives; review quasi-identifiers; approval,Low,DPO,Open,2026-10-14
