@@ -1,8 +1,3 @@
-# Public-release candidates
+# Public-Minimal Data
 
-This folder contains minimized derivatives and samples. Presence in this folder does not mean publication has been legally, institutionally, or regulatorily approved.
-
-Expected manual upload:
-
-- `zimbabwe_2022_law_reports_public_minimal.jsonl`
-- `zimbabwe_2022_public_sample.jsonl`
+The public-minimal derivative excludes case names, document names, parties, counsel, factual narratives, procedural history, final orders, full judgment text, source blocks and source paths. It is designed to reduce exposure, not to establish that publication is lawful. Obtain legal, privacy and institutional approval before release.
