@@ -1,0 +1,20 @@
+{
+  "generated_at_utc": "2026-07-14T10:58:25+00:00",
+  "scope": "Aggregate automated screening of normalized records; results require human review.",
+  "pattern_record_counts": {
+    "email_address_pattern": 4,
+    "zimbabwe_phone_pattern": 4,
+    "identity_number_like_pattern": 1
+  },
+  "sensitive_term_record_counts": {
+    "minor_or_juvenile": 95,
+    "sexual_offence": 9,
+    "health_information": 53,
+    "domestic_or_family": 123
+  },
+  "limitations": [
+    "Pattern matching may produce false positives and false negatives.",
+    "A public judgment may still contain personal information requiring a publication decision.",
+    "This scan does not replace legal, editorial, or privacy review."
+  ]
+}
