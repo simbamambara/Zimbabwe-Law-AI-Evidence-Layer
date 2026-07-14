@@ -1,10 +1,12 @@
 # POTRAZ Evidence Index
 
+I use this index to show where each part of the submission evidence is located in the repository.
+
 | Evidence area | Primary repository evidence |
 |---|---|
 | Project scope and status | `README.md`, `00_SUBMISSION_COVER_NOTE.md` |
 | Dataset inventory and provenance | `data/metadata/dataset_manifest.json`, `data/metadata/dataset_statistics.json` |
-| Source integrity | Raw and normalized SHA-256 values in the dataset manifest and validation report |
+| Source integrity | Raw and normalised SHA-256 values in the dataset manifest and validation report |
 | Data structure | `schemas/zimbabwe_2022_law_report_record.schema.json`, `schemas/DATA_DICTIONARY.md` |
 | Processing methodology | `docs/METHODOLOGY.md`, `docs/ARCHITECTURE.md` |
 | Validation and quality | `data/metadata/validation_report.json`, review and anomaly queues |
@@ -23,4 +25,4 @@
 | Reproducibility | Source code, tests, workflows, and reproducibility report |
 | Submission readiness | Gap assessment, checklist, and sign-off template |
 
-All evidence must be reviewed for completeness, current applicability, responsible-owner assignment, and signature before filing.
+Before filing, I will confirm that each item is complete, current, assigned to a responsible owner, and signed where required.
