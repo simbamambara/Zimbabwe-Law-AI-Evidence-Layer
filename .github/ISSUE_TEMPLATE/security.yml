@@ -1,0 +1,12 @@
+name: Security or privacy concern
+description: Do not submit sensitive details publicly.
+title: "[SECURITY/PRIVACY] "
+labels: ["security", "privacy"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include personal data, credentials, protected identities, or exploit details. Contact the repository owner privately."
+  - type: textarea
+    id: summary
+    attributes:
+      label: Non-sensitive summary
