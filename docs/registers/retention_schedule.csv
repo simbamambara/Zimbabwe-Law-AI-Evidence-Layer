@@ -1,0 +1,7 @@
+record_category,classification,retention_period,trigger,disposal,owner
+Raw judgment/source evidence,Restricted,To be approved; minimum needed for editorial mandate and audit,Source acquisition or project closure,Secure deletion after legal hold and archival review,Data Owner/Editorial Lead
+Normalized full dataset,Restricted,Active project plus approved audit period,Release superseded or project closure,Secure deletion/versioned archive,Data Owner
+Public-approved derivatives,Public-approved,Persistent versioned release unless withdrawn,Correction/suppression decision,Withdraw access; retain controlled audit copy,Publication Owner
+Access/security logs,Internal/Restricted,12 months proposed; approve based on risk,Log creation,Automated secure deletion,Technical Lead
+Incident evidence,Restricted,Case closure plus legal/regulatory period,Incident closure,Approved secure deletion,DPO/Security Lead
+Backups,Restricted,Rolling 90 days proposed,Backup creation,Cryptographic/secure expiry,Technical Lead
